@@ -10,12 +10,16 @@ public class Application {
 	public static void main(String args[]) throws Exception {
 
 		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
-		List<String> symptoms = reader.GetSymptoms();
+		List<String> symptoms = reader.getSymptoms();
 
 		AnalyticCounter analyticCounter = new AnalyticCounter(symptoms);
 		TreeMap<String, Integer> result = analyticCounter.countSymptoms();
 
-		
+		WriteSymptomDataIntoFile writeSymptoms = new WriteSymptomDataIntoFile(result);
+		writeSymptoms.writeSymptoms();
+
+
+
 
 	}
 }
