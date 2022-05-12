@@ -15,7 +15,7 @@ public class Application {
 		AnalyticCounter analyticCounter = new AnalyticCounter(symptoms);
 		TreeMap<String, Integer> result = analyticCounter.countSymptoms();
 
-		WriteSymptomDataIntoFile writeSymptoms = new WriteSymptomDataIntoFile(result);
+		WriteSymptomDataIntoFile writeSymptoms = new WriteSymptomDataIntoFile(result, "Project02Eclipse/result.out");
 		writeSymptoms.writeSymptoms();
 
 

@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.TreeMap;
@@ -7,8 +8,11 @@ import java.util.TreeMap;
 public class WriteSymptomDataIntoFile implements IWritingSymptoms {
     private TreeMap<String, Integer> symptomsResult;
 
-    public WriteSymptomDataIntoFile(TreeMap<String, Integer> symptomsResult){
+    private String filepath;
+
+    public WriteSymptomDataIntoFile(TreeMap<String, Integer> symptomsResult, String filepath){
         this.symptomsResult = symptomsResult;
+        this.filepath = filepath;
     }
 
     /**
@@ -18,32 +22,20 @@ public class WriteSymptomDataIntoFile implements IWritingSymptoms {
      */
 
     public void writeSymptoms(){
-        FileWriter writer = null;
-        if(symptomsResult != null || !symptomsResult.isEmpty()){
-            try {
-                writer = new FileWriter("Project02Eclipse/result.out");
-                final FileWriter filewriter = writer;
-                symptomsResult.entrySet().stream().forEach (entry -> {
-                    System.out.println(entry.getKey() + " = "+ entry.getValue());
-                    try {
-                        filewriter.write(entry.getKey() + " = "+ entry.getValue() + ("\n"));
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
 
-            }catch (IOException e){
-                System.err.println(" Erreur lors de l'ecriture dans le fichier " + e.getMessage());
-            }finally {
-                if (writer != null){
-                    try{
-                        writer.close();
-                    } catch (IOException e){
-                        System.err.println(" Error lors de l'ecriture dans le fichier " + e.getMessage());
-                    }
-                }
+        if(filepath != null){
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))){
+                String result =
+                        symptomsResult.entrySet().stream().map(e -> String.format("%s = %d", e.getKey(), e.getValue()))
+                                .reduce(" ",(partialString, element) -> partialString + "\n" + element);
+                writer.write(result);
+                System.out.println(result);
+            }
+            catch (IOException e){
+                System.err.println("Error writing to file" + e.getMessage());
             }
         }
+
 
     }
 
