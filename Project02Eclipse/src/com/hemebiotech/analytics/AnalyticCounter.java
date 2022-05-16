@@ -1,8 +1,7 @@
 package com.hemebiotech.analytics;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
 import java.util.TreeMap;
 
 public class AnalyticCounter {
@@ -18,14 +17,14 @@ public class AnalyticCounter {
      * @return map of symptoms/occurences
      */
     public TreeMap<String, Integer> countSymptoms() {
-        TreeMap<String, Integer> treeSymptoms = new TreeMap<String, Integer>();
+        TreeMap<String, Integer> treeSymptoms = new TreeMap<>();
 
-        for (String symptoms : symptoms) {
+        for (String symptom : symptoms) {
 
-            if (treeSymptoms.containsKey(symptoms)) {
-                treeSymptoms.put(symptoms, treeSymptoms.get(symptoms)+1 );
+            if (treeSymptoms.containsKey(symptom)) {
+                treeSymptoms.put(symptom, treeSymptoms.get(symptom) + 1);
             } else {
-                treeSymptoms.put(symptoms, 1);
+                treeSymptoms.put(symptom, 1);
             }
 
         }
