@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class WriteSymptomDataIntoFile implements IWritingSymptoms {
     private TreeMap<String, Integer> symptomsResult;
@@ -28,8 +29,8 @@ public class WriteSymptomDataIntoFile implements IWritingSymptoms {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
                 String result = symptomsResult.entrySet()
                         .stream()
-                        .map(e -> String.format("%s = %d", e.getKey(), e.getValue()))
-                        .reduce("", (partialString, element) -> partialString + "\n" + element);
+                        .map(e -> String.format("%s = %d ", e.getKey(), e.getValue()) + "\n")
+                        .collect(Collectors.joining());
                 writer.write(result);
                 System.out.println(result);
             } catch (IOException e) {
