@@ -11,9 +11,6 @@ L'objectif était de débugger une application, à partir d'un existant, en impl
 # Exécution 
 A l'exécution du programme, vous retrouverez le fichier de sortie (result.out) sur votre poste en suivant le chemin suivant: Project02Eclipse/result.out
 
-# Lien du projet initial
-https://github.com/OpenClassrooms-Student-Center/Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application/tree/master/Project02Eclipse
-
 # Fabriqué avec 
 IDE : IdeaIntellij 
 Langage : JAVA 
